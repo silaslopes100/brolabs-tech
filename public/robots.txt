@@ -1,0 +1,13 @@
+# robots.txt para BROLABS TECH
+User-agent: *
+Allow: /
+Allow: /projetos
+Allow: /projetos/*
+Allow: /privacidade
+
+# Painel administrativo protegido bloqueado para indexação
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/admin/*
+
+Sitemap: https://brolabs.tech/sitemap.xml

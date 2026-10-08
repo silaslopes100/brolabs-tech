@@ -1,0 +1,116 @@
+/**
+ * Arquivo: index.css
+ * Responsabilidade: folha de estilos global, fontes tipográficas, classes utilitárias baseadas em tokens e anti-slop reset.
+ * Dados: tokens.css
+ */
+
+@import "@fontsource/sora/400.css";
+@import "@fontsource/sora/600.css";
+@import "@fontsource/sora/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "./styles/tokens.css";
+@import "tailwindcss";
+
+/* ===== [SEÇÃO: CONFIGURAÇÕES GLOBAIS] ===== */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+    color: var(--color-offwhite);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Respeito estrito a preferências de redução de movimento */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #040404;
+    overflow-x: hidden;
+  }
+
+  /* Tipografia padrão */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.03em;
+  }
+
+  /* Anel de foco acessível verde */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+}
+
+/* ===== [SEÇÃO: PADRÕES GRÁFICOS DA MARCA (DA BRAND GUIDELINES)] ===== */
+/* Padrão de pontilhado da marca com baixa opacidade */
+.pattern-dots {
+  background-image: radial-gradient(rgba(202, 240, 0, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Padrão de linhas diagonais sutis */
+.pattern-lines {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(247, 247, 247, 0.03) 10px,
+    rgba(247, 247, 247, 0.03) 11px
+  );
+}
+
+/* Fundo 3D orgânico em listras (Fallback procedural com efeito de relevo e tons de grafite/verde) */
+.bg-mesh-3d {
+  background-color: #060606;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(202, 240, 0, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(202, 240, 0, 0.03) 0%, transparent 45%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(45, 45, 45, 0.12) 0, rgba(45, 45, 45, 0.12) 2px, transparent 2px, transparent 18px);
+}
+
+/* Recorte do card hero para encaixe do selo do frasco (Assinatura REF-B) */
+.hero-cutout-mask {
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - 100px) 0%,
+    100% 100px,
+    100% 100%,
+    0% 100%
+  );
+}
+
+/* Animação suave de marquee com pausa ao hover */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

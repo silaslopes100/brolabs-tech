@@ -1,0 +1,6 @@
+{
+  "name": "BROLABS TECH - Hub de Inovação Digital",
+  "description": "Tecnologia que transforma ideias em resultados. Desenvolvimento de sistemas, SaaS, automações com IA, design e estratégia digital.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
