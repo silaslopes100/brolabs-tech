@@ -10,13 +10,13 @@ import React from 'react';
 export const Manifesto: React.FC = () => {
   const phrases = [
     { text: "Tecnologia.", outlined: false },
-    { text: "Design.", outlined: true },
+    { text: "Design.", outlined: false },
     { text: "Resultados.", outlined: false },
-    { text: "Tecnologia que transforma.", outlined: true },
+    { text: "Tecnologia que transforma.", outlined: false },
     { text: "Tecnologia.", outlined: false },
-    { text: "Design.", outlined: true },
+    { text: "Design.", outlined: false },
     { text: "Resultados.", outlined: false },
-    { text: "Do conceito ao resultado.", outlined: true },
+    { text: "Do conceito ao resultado.", outlined: false },
   ];
 
   return (

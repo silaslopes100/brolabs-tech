@@ -1,6 +1,6 @@
 /**
  * Arquivo: Hero.tsx
- * Responsabilidade: seção Hero bento grid inspirada na [REF-B] com card recortado, selo circular com o frasco da marca, card verde sólido de pulso, card Sobre e card de barras do processo.
+ * Responsabilidade: seção Hero bento grid inspirada na [REF-B] com card recortado, selo circular com o frasco da marca, card verde sólido, card Sobre e card de barras do processo.
  * Dados: Seção 6 do briefing
  * Como editar: textos dos títulos e botões em [SEÇÃO: CONTEÚDO DO HERO].
  */
@@ -24,13 +24,7 @@ export const Hero: React.FC<HeroProps> = () => {
     <section id="inicio" className="w-full px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 pb-12 sm:pb-16">
       {/* Assinatura discreta no topo do Hero */}
       <div className="flex items-center justify-between mb-4 sm:mb-6 px-1">
-        <span className="font-['Inter'] text-[10px] sm:text-xs text-[#D9D9D9]/50 tracking-[0.3em] uppercase font-medium">
-          Tecnologia que transforma ideias em resultados.
-        </span>
-        <span className="hidden sm:inline-flex items-center gap-2 text-[10px] sm:text-xs font-['Sora'] text-[#CAF000]/80">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#CAF000] animate-pulse" />
-          São Paulo · Brasil
-        </span>
+
       </div>
 
       {/* ===== [SEÇÃO: BENTO GRID HERO (REF-B)] ===== */}
@@ -41,6 +35,16 @@ export const Hero: React.FC<HeroProps> = () => {
           
           {/* Imagem de arquitetura/tecnologia escura de fundo */}
           <div className="absolute inset-0 z-0">
+            <video
+              className="absolute inset-0 w-full h-full object-cover opacity -0"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-hidden="true"
+            >
+              <source src="/videos/hero-background.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/75 to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/90 via-[#080808]/40 to-transparent z-10" />
             {/* Padrão geométrico de arquitetura/código estilizado */}
@@ -144,38 +148,11 @@ export const Hero: React.FC<HeroProps> = () => {
         {/* ===== COLUNA DIREITA: GRID DE 3 CARDS DA REF-B (5 COLS LG) ===== */}
         <div className="lg:col-span-5 flex flex-col gap-3.5 sm:gap-4 lg:gap-5">
           
-          {/* ===== CARD 2: VERDE-LIMÃO SÓLIDO COM GRAFISMO DE PULSO E FORMA 3D (REF-B) ===== */}
+          {/* ===== CARD 2: VERDE-LIMÃO SÓLIDO (REF-B) ===== */}
           <div
             onClick={() => scrollTo('servicos')}
             className="group relative cursor-pointer min-h-[170px] sm:min-h-[190px] rounded-[24px] sm:rounded-[28px] bg-[#CAF000] text-[#080808] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-sm transition-transform duration-300 hover:scale-[1.01]"
           >
-            {/* Forma 3D abstrata preta e onda/pulso */}
-            <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none flex items-center justify-end overflow-hidden">
-              <svg
-                viewBox="0 0 200 120"
-                className="w-48 sm:w-56 h-auto text-[#080808]"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Linha de onda contínua */}
-                <path
-                  d="M0 60 C 30 60, 45 20, 75 60 C 105 100, 120 20, 150 60 C 180 100, 195 60, 220 60"
-                  stroke="#080808"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* Forma 3D estriada preta sobreposta */}
-                <circle cx="160" cy="60" r="38" fill="#080808" opacity="0.95" />
-                <path
-                  d="M130 60 Q 160 30 190 60 Q 160 90 130 60 Z"
-                  stroke="#CAF000"
-                  strokeWidth="2"
-                  opacity="0.3"
-                />
-              </svg>
-            </div>
-
             {/* Cabeçalho do Card Verde */}
             <div className="relative z-10 flex items-center justify-between">
               <span className="font-['Inter'] text-[11px] font-bold uppercase tracking-widest text-[#080808]/75">
@@ -202,32 +179,30 @@ export const Hero: React.FC<HeroProps> = () => {
               onClick={() => scrollTo('sobre')}
               className="group cursor-pointer rounded-[24px] sm:rounded-[28px] bg-[#161616] border border-[rgba(247,247,247,0.12)] p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 hover:border-[#CAF000]/40"
             >
-              {/* Seta no topo */}
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-['Sora'] font-semibold text-[#D9D9D9]/50 tracking-wider uppercase">
-                  FUNDADORES
-                </span>
-                <div className="w-7 h-7 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center group-hover:bg-[#CAF000] group-hover:border-[#CAF000] group-hover:text-[#080808] transition-all duration-200">
-                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] group-hover:rotate-45 transition-transform duration-200" />
+              <div
+                className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+                style={{
+                  backgroundImage: "url('/images/founders-background.png')",
+                  backgroundPosition: 'center 35%',
+                }}
+                aria-hidden="true"
+              />
+              <div className="relative z-10 flex flex-1 flex-col justify-between">
+                {/* Seta no topo */}
+                <div className="flex items-center justify-between">
+                  <div className="w-7 h-7 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center group-hover:bg-[#CAF000] group-hover:border-[#CAF000] group-hover:text-[#080808] transition-all duration-200">
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] group-hover:rotate-45 transition-transform duration-200" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Forma 3D geométrica empilhada (estilo REF-B) */}
-              <div className="my-3 py-2 flex justify-center">
-                <svg width="72" height="54" viewBox="0 0 80 60" fill="none" className="opacity-75 group-hover:opacity-100 transition-opacity">
-                  <path d="M40 5 L70 20 L40 35 L10 20 Z" fill="#2D2D2D" stroke="rgba(247,247,247,0.2)" strokeWidth="1" />
-                  <path d="M40 18 L70 33 L40 48 L10 33 Z" fill="#1F1F1F" stroke="rgba(247,247,247,0.15)" strokeWidth="1" />
-                  <path d="M40 30 L70 45 L40 60 L10 45 Z" fill="#121212" stroke="rgba(202,240,0,0.4)" strokeWidth="1" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="font-['Sora'] font-bold text-base text-[#F7F7F7] group-hover:text-[#CAF000] transition-colors">
-                  Sobre nós
-                </h3>
-                <p className="text-[11px] text-[#D9D9D9]/70 font-['Inter'] mt-0.5">
-                  Silas Lopes & Marcos Sena
-                </p>
+                <div>
+                  <h3 className="font-['Sora'] font-bold text-base text-[#F7F7F7] group-hover:text-[#CAF000] transition-colors">
+                    Sobre nós
+                  </h3>
+                  <p className="text-[11px] text-[#D9D9D9]/70 font-['Inter'] mt-0.5">
+                    Silas Lopes & Marcos Sena
+                  </p>
+                </div>
               </div>
             </div>
 

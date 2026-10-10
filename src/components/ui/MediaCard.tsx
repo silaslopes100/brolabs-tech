@@ -1,6 +1,6 @@
 /**
  * Arquivo: MediaCard.tsx
- * Responsabilidade: card de mídia com tratamento fotográfico de estúdio: vinheta escura, gradiente de contraste AA, filme grain e fallback procedural pontilhado.
+ * Responsabilidade: card de mídia com vinheta escura, gradiente de contraste AA, filme grain e imagem discreta de fallback.
  * Dados: Seção 7 do briefing técnico
  * Como editar: ajuste a opacidade da vinheta ou do gradiente inferior conforme o contraste do conteúdo.
  */
@@ -11,6 +11,8 @@ import { Card, CardProps } from './Card';
 interface MediaCardProps extends Omit<CardProps, 'children'> {
   imageSrc?: string;
   imageAlt?: string;
+  fallbackImageSrc?: string;
+  fallbackVideoSrc?: string;
   priority?: boolean;
   aspectRatio?: 'auto' | '16/9' | '4/5' | '1/1' | '21/9';
   children: React.ReactNode;
@@ -19,6 +21,8 @@ interface MediaCardProps extends Omit<CardProps, 'children'> {
 export const MediaCard: React.FC<MediaCardProps> = ({
   imageSrc,
   imageAlt = 'Mídia BROLABS TECH',
+  fallbackImageSrc,
+  fallbackVideoSrc,
   priority = false,
   aspectRatio = 'auto',
   children,
@@ -55,8 +59,28 @@ export const MediaCard: React.FC<MediaCardProps> = ({
           className="absolute inset-0 w-full h-full object-cover object-center filter grayscale-[30%] contrast-[1.08] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
       ) : (
-        /* Fallback elegante: gradiente grafite → preto com padrão pontilhado da marca */
         <div className="absolute inset-0 bg-gradient-to-br from-[#2D2D2D]/40 via-[#161616] to-[#080808]">
+          {fallbackVideoSrc && (
+            <video
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src={fallbackVideoSrc} type="video/mp4" />
+            </video>
+          )}
+          {fallbackImageSrc && (
+            <img
+              src={fallbackImageSrc}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
+            />
+          )}
           <div className="absolute inset-0 pattern-dots opacity-40" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(202,240,0,0.06),transparent_60%)]" />
         </div>

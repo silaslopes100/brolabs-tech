@@ -96,7 +96,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
         {/* ===== COLUNA ESQUERDA: TEXTO DE CHAMADA / CTA ===== */}
         <div className="lg:col-span-5 space-y-6">
           <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase">
-            <span>05 · VAMOS CONVERSAR</span>
+            <span>VAMOS CONVERSAR</span>
           </div>
 
           {/* EDITAR AQUI: Título do formulário */}

@@ -15,11 +15,11 @@ export const About: React.FC = () => {
       {/* ===== [SEÇÃO: TEXTO INSTITUCIONAL E MANIFESTO] ===== */}
       <div className="max-w-4xl mb-12 sm:mb-16 space-y-6">
         <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase">
-          <span>04 · QUEM SOMOS</span>
+          <span>QUEM SOMOS</span>
         </div>
 
         <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-['Sora'] text-[#F7F7F7] leading-tight tracking-tight">
-          A Brolabs Tech é um hub de inovação digital fundado por Silas Lopes e Marcos Sena — dois profissionais apaixonados por tecnologia, design e resultados reais.
+          A Brolabs tech é um hub de inovação digital fundado por Silas Lopes e Marcos Sena. Profissionais apaixonados por tecnologia, design e resultados reais.
         </h2>
 
         {/* Manifesto em destaque */}
@@ -64,9 +64,7 @@ export const About: React.FC = () => {
               {/* Gradiente inferior e vinheta sutil */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/30 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 z-10">
-                <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-['Sora'] text-[#CAF000] font-semibold">
-                  Co-Founder
-                </span>
+
               </div>
             </div>
 

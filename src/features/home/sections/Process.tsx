@@ -14,7 +14,7 @@ export const Process: React.FC = () => {
       {/* Cabeçalho da Seção */}
       <div className="max-w-3xl mb-12 sm:mb-16">
         <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase mb-3">
-          <span>03 · PROCESSO CLARO</span>
+          <span>PROCESSO CLARO</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-bold font-['Sora'] text-[#F7F7F7] tracking-tight">
           Como transformamos ideias em produtos reais.
@@ -58,13 +58,6 @@ export const Process: React.FC = () => {
                       {step.description}
                     </p>
                   </div>
-                </div>
-
-                {/* Tag de fase indicadora */}
-                <div className="shrink-0 self-end md:self-center">
-                  <span className="px-3.5 py-1.5 rounded-full text-[11px] font-['Sora'] font-semibold bg-white/[0.04] border border-[rgba(247,247,247,0.12)] text-[#D9D9D9]/70 group-hover:text-[#CAF000] group-hover:border-[#CAF000]/40 transition-colors">
-                    Etapa {idx + 1} de 4
-                  </span>
                 </div>
               </Card>
             </div>

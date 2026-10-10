@@ -49,7 +49,7 @@ export const FeaturedProjects: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase mb-3">
-            <span>02 · CASOS SELECIONADOS</span>
+            <span>CASES DE SUCESSO</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold font-['Sora'] text-[#F7F7F7] tracking-tight">
             Projetos construídos para o mundo real.

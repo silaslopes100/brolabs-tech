@@ -30,7 +30,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
       {/* ===== [SEÇÃO: CABEÇALHO DA SEÇÃO] ===== */}
       <div className="max-w-3xl mb-10 sm:mb-14">
         <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase mb-3">
-          <span>01 · NOSSAS SOLUÇÕES</span>
+          <span>NOSSAS SOLUÇÕES</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-bold font-['Sora'] text-[#F7F7F7] tracking-tight">
           Especialidades que aceleram o seu negócio.
@@ -58,6 +58,24 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
               <MediaCard
                 imageSrc={service.image}
                 imageAlt={service.title}
+                fallbackImageSrc={
+                  service.id === 'sistemas-saas'
+                    ? '/images/media-card-dashboard.png'
+                    : service.id === 'crm-gestao'
+                      ? '/images/crm-management-background.png'
+                      : service.id === 'design-branding'
+                        ? '/images/design-branding-background.png'
+                        : service.id === 'estrategia-digital'
+                          ? '/images/digital-strategy-background.png'
+                          : service.id === 'comunicacao-digital'
+                            ? '/images/digital-communications-background.png'
+                            : undefined
+                }
+                fallbackVideoSrc={
+                  service.id === 'automacao-ia'
+                    ? '/videos/automation-card-background.mp4'
+                    : undefined
+                }
                 className={`w-full ${heightClass} cursor-pointer`}
               >
                 {/* Numeração editorial e tag de serviço */}

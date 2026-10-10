@@ -17,16 +17,16 @@ export interface TeamMember {
 export const FOUNDERS: TeamMember[] = [
   {
     name: "Silas Lopes",
-    role: "Co-Founder & Head de Tecnologia",
-    bio: "Especialista em arquitetura de sistemas, infraestrutura distribuída, plataformas SaaS e automações inteligentes com inteligência artificial.",
-    image: "/images/team/silas.webp",
+    role: "Co-Founder & Head de Design e Estratégia",
+    bio: "Diretor criativo focado em design de produto, sistemas de identidade visual de alto padrão, branding digital e posicionamento de mercado.",
+    image: "/images/team/silas.png",
     socialLink: "https://linkedin.com",
   },
   {
     name: "Marcos Sena",
-    role: "Co-Founder & Head de Design e Estratégia",
-    bio: "Diretor criativo focado em design de produto, sistemas de identidade visual de alto padrão, branding digital e posicionamento de mercado.",
-    image: "/images/team/marcos.webp",
+    role: "Co-Founder & Head de Tecnologia",
+    bio: "Especialista em arquitetura de sistemas, infraestrutura distribuída, plataformas SaaS e automações inteligentes com inteligência artificial.",
+    image: "/images/team/marcos.png",
     socialLink: "https://linkedin.com",
   },
 ];
