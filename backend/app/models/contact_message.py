@@ -19,6 +19,7 @@ class ContactMessage(Base):
     name = Column(String(120), nullable=False)
     email = Column(String(255), index=True, nullable=False)
     company = Column(String(120), nullable=True)
+    phone = Column(String(40), nullable=True)
     interest = Column(String(80), nullable=False)  # Sistemas & SaaS, Automação com IA, etc.
     message = Column(Text, nullable=False)
     consent_lgpd = Column(Boolean, default=False, nullable=False)

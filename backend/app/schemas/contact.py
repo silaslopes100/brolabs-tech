@@ -14,11 +14,19 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 class ContactCreate(BaseModel):
     name: str = Field(..., min_length=2, max_length=120, description="Nome completo ou de contato")
     email: EmailStr = Field(..., description="E-mail profissional")
-    company: Optional[str] = Field(None, max_length=120, description="Nome da empresa")
+    company: str = Field(..., min_length=1, max_length=120, description="Nome da empresa")
+    phone: Optional[str] = Field(None, max_length=40, description="Telefone ou WhatsApp")
     interest: str = Field(..., min_length=2, max_length=80, description="Serviço de interesse principal")
     message: str = Field(..., min_length=10, max_length=3000, description="Detalhes sobre a ideia ou projeto")
     consent_lgpd: bool = Field(..., description="Consentimento explícito com a Política de Privacidade")
     honeypot: Optional[str] = Field(None, description="Campo anti-spam invisível para bots")
+
+    @field_validator("company")
+    def validate_company(cls, value: str) -> str:
+        company = value.strip()
+        if not company:
+            raise ValueError("O nome da empresa é obrigatório.")
+        return company
 
     @field_validator("consent_lgpd")
     def validate_lgpd(cls, v):

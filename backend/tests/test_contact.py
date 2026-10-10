@@ -12,6 +12,7 @@ def test_contact_submission_success(client, db_session):
         "name": "Carlos Silva",
         "email": "carlos@empresa.com.br",
         "company": "Silva Empreendimentos",
+        "phone": "+55 (11) 99999-9999",
         "interest": "Sistemas & SaaS",
         "message": "Gostaria de desenvolver uma plataforma SaaS multi-tenant.",
         "consent_lgpd": True
@@ -24,7 +25,21 @@ def test_contact_submission_success(client, db_session):
     msg = db_session.query(ContactMessage).filter(ContactMessage.email == "carlos@empresa.com.br").first()
     assert msg is not None
     assert msg.name == "Carlos Silva"
+    assert msg.phone == "+55 (11) 99999-9999"
     assert msg.interest == "Sistemas & SaaS"
+
+
+def test_contact_company_required(client):
+    """Valida que o nome da empresa é obrigatório."""
+    payload = {
+        "name": "Carlos Silva",
+        "email": "carlos@empresa.com.br",
+        "interest": "Sistemas & SaaS",
+        "message": "Gostaria de desenvolver uma plataforma SaaS multi-tenant.",
+        "consent_lgpd": True
+    }
+    response = client.post("/api/contact", json=payload)
+    assert response.status_code == 422
 
 
 def test_contact_lgpd_required(client):
@@ -45,6 +60,7 @@ def test_contact_honeypot_discard(client, db_session):
     payload = {
         "name": "Spambot 3000",
         "email": "spam@bot.com",
+        "company": "Empresa de spam",
         "interest": "Automação com IA",
         "message": "Promoção não solicitada de backlinks.",
         "consent_lgpd": True,

@@ -66,7 +66,8 @@ class ContactService:
         message_record = ContactMessage(
             name=payload.name.strip(),
             email=payload.email.strip().lower(),
-            company=payload.company.strip() if payload.company else None,
+            company=payload.company,
+            phone=payload.phone.strip() if payload.phone and payload.phone.strip() else None,
             interest=payload.interest.strip(),
             message=payload.message.strip(),
             consent_lgpd=payload.consent_lgpd,

@@ -35,7 +35,8 @@ export interface CategorySummary {
 export interface ContactPayload {
   name: string;
   email: string;
-  company?: string;
+  company: string;
+  phone?: string;
   interest: string;
   message: string;
   consent_lgpd: boolean;

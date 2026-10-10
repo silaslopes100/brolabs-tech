@@ -32,6 +32,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
     name: '',
     email: '',
     company: '',
+    phone: '',
     interest: initialService || 'Sistemas & SaaS',
     message: '',
     consent_lgpd: false,
@@ -105,6 +106,14 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
     e.preventDefault();
     setStatusMessage(null);
 
+    if (!formData.company.trim()) {
+      setStatusMessage({
+        type: 'error',
+        text: 'Por favor, informe o nome da empresa.',
+      });
+      return;
+    }
+
     if (!formData.consent_lgpd) {
       setStatusMessage({
         type: 'error',
@@ -124,6 +133,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
         name: '',
         email: '',
         company: '',
+        phone: '',
         interest: 'Sistemas & SaaS',
         message: '',
         consent_lgpd: false,
@@ -363,13 +373,27 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input
-                  label="Empresa (opcional)"
+                  label="Empresa *"
                   name="company"
+                  required
                   placeholder="Nome da sua empresa"
-                  value={formData.company || ''}
+                  value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 />
 
+                <Input
+                  label="Telefone/WhatsApp"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="+55 (11) 99999-9999"
+                  value={formData.phone || ''}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
+
+              </div>
+
+              <div>
                 <Select
                   label="Serviço de interesse *"
                   name="interest"
