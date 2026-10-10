@@ -48,6 +48,24 @@ export interface ContactResult {
   received_at: string;
 }
 
+export interface ContactBriefingMessage {
+  role: 'assistant' | 'user';
+  content: string;
+}
+
+export interface ContactBriefingPayload {
+  messages: ContactBriefingMessage[];
+  interest?: string;
+  consent_ai: boolean;
+}
+
+export interface ContactBriefingResult {
+  reply: string;
+  completed: boolean;
+  summary: string | null;
+  interest: string | null;
+}
+
 export interface AdminUser {
   id: number;
   email: string;

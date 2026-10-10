@@ -36,7 +36,7 @@ export const PrivacyPage: React.FC = () => {
         </h1>
 
         <p className="text-xs sm:text-sm text-[#D9D9D9]/60">
-          Última atualização: Outubro de 2026 · Versão 1.0
+          Última atualização: Outubro de 2026 · Versão 1.1
         </p>
       </header>
 
@@ -60,13 +60,14 @@ export const PrivacyPage: React.FC = () => {
             2. Dados Coletados e Finalidade do Tratamento
           </h2>
           <p>
-            Coletamos apenas as informações estritamente necessárias fornecidas voluntariamente através do nosso formulário de contato institucional:
+            Coletamos as informações fornecidas voluntariamente no briefing de projeto e no formulário de contato:
           </p>
           <ul className="list-disc pl-5 space-y-1.5 text-[#D9D9D9]/75">
             <li><strong className="text-[#F7F7F7]">Nome Completo:</strong> para identificação e comunicação personalizada;</li>
             <li><strong className="text-[#F7F7F7]">E-mail Corporativo:</strong> para envio de respostas, diagnósticos preliminares e propostas comerciais;</li>
             <li><strong className="text-[#F7F7F7]">Empresa (opcional):</strong> para contextualizar o escopo de atuação e setor de mercado;</li>
-            <li><strong className="text-[#F7F7F7]">Serviço de Interesse e Mensagem:</strong> para avaliação técnica da viabilidade do projeto.</li>
+            <li><strong className="text-[#F7F7F7]">Serviço de Interesse e Mensagem:</strong> para avaliação técnica da viabilidade do projeto;</li>
+            <li><strong className="text-[#F7F7F7]">Mensagens do briefing:</strong> quando autorizado, para gerar um resumo inicial do projeto com auxílio de IA.</li>
           </ul>
         </section>
 
@@ -75,7 +76,7 @@ export const PrivacyPage: React.FC = () => {
             3. Base Legal para o Tratamento
           </h2>
           <p>
-            O tratamento dos seus dados ocorre com base no <strong className="text-[#F7F7F7]">Consentimento do Titular (Art. 7º, I da LGPD)</strong>, manifestado expressamente através da seleção do checkbox correspondente no formulário de envio, bem como para <strong className="text-[#F7F7F7]">procedimentos preliminares relacionados a contrato (Art. 7º, V)</strong> a seu pedido.
+            O envio das mensagens do briefing ao provedor de IA depende de consentimento específico, solicitado antes do início da conversa. O envio dos dados de contato e da mensagem à BROLABS TECH depende do consentimento LGPD no formulário final. Também tratamos informações para <strong className="text-[#F7F7F7]">procedimentos preliminares relacionados a contrato (Art. 7º, V)</strong> a seu pedido.
           </p>
         </section>
 
@@ -84,7 +85,7 @@ export const PrivacyPage: React.FC = () => {
             4. Compartilhamento e Armazenamento Seguro
           </h2>
           <p>
-            A BROLABS TECH <strong className="text-[#F7F7F7]">não comercializa, não aluga e não repassa</strong> seus dados a quaisquer terceiros para fins de marketing.
+            A BROLABS TECH <strong className="text-[#F7F7F7]">não comercializa nem aluga</strong> seus dados. Se você autorizar o briefing com IA, as mensagens dessa conversa são enviadas ao OpenRouter exclusivamente para gerar perguntas e organizar um resumo do projeto; não informe dados pessoais ou sigilosos nessa etapa. Os dados do formulário final são recebidos pelo backend da BROLABS TECH para atendimento do contato.
           </p>
           <p>
             Adotamos medidas técnicas e administrativas rigorosas, como tráfego criptografado via protocolo HTTPS (TLS), controle restrito de acesso por credenciais seguras e proteção contra robôs de spam para resguardar a integridade das comunicações.

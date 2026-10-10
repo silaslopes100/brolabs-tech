@@ -9,6 +9,8 @@ import { ApiClientInterface } from './types';
 import { mockClient } from './mockClient';
 import { realClient } from './client';
 
+export { generateContactBriefing } from './client';
+
 // Por padrão no preview de frontend, utiliza o mock para independência total
 const useMock = import.meta.env.VITE_USE_MOCK !== 'false';
 

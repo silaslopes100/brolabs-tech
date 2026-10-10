@@ -13,6 +13,8 @@ import {
   AdminUser,
   AuthResult,
   ProjectFormData,
+  ContactBriefingPayload,
+  ContactBriefingResult,
 } from './types';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
@@ -39,6 +41,15 @@ async function fetchJson<T>(endpoint: string, options: RequestInit = {}): Promis
   }
 
   return response.json();
+}
+
+export async function generateContactBriefing(
+  payload: ContactBriefingPayload,
+): Promise<ContactBriefingResult> {
+  return fetchJson<ContactBriefingResult>('/contact/briefing', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
 }
 
 export const realClient: ApiClientInterface = {

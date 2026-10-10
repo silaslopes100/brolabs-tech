@@ -46,6 +46,10 @@ class Settings(BaseSettings):
     # TODO(brolabs): Adicionar credenciais SMTP para envio real de e-mail de contato
     CONTACT_DEST_EMAIL: str = "contato@brolabs.tech"
 
+    # Integração server-side com OpenRouter
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_MODEL: str = "openai/gpt-oss-120b"
+
     @computed_field
     @property
     def cors_origins(self) -> List[str]:
