@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = () => {
                   HUB DE INOVAÇÃO DIGITAL
                 </span>
                 <span className="block font-['Inter'] text-[11px] text-[#D9D9D9]/70">
-                  São Paulo · Global Delivery
+                  São Paulo
                 </span>
               </div>
             </div>

@@ -86,8 +86,8 @@ src/
 Este repositório usa React/Vite no frontend e FastAPI no backend, portanto a chamada server-side
 é exposta por `POST /api/contact/briefing` em vez de `createServerFn`. O endpoint conduz a
 primeira etapa do contato, fazendo perguntas de qualificação e retornando um resumo para revisão
-e envio no formulário da segunda etapa. O envio ao provedor requer consentimento explícito na
-primeira etapa, com opção para continuar pelo formulário sem usar IA.
+e envio no formulário da segunda etapa. A etapa de briefing informa que as mensagens são
+processadas por IA e orienta o visitante a não compartilhar dados pessoais ou sigilosos.
 
 Configure `OPENROUTER_API_KEY` somente no ambiente do backend. O modelo padrão é
 `openai/gpt-oss-120b` e pode ser alterado por `OPENROUTER_MODEL`. Consulte

@@ -25,7 +25,6 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
     },
   ]);
   const [chatInput, setChatInput] = useState('');
-  const [aiConsent, setAiConsent] = useState(false);
   const [briefingLoading, setBriefingLoading] = useState(false);
   const [briefingError, setBriefingError] = useState<string | null>(null);
   const [briefingComplete, setBriefingComplete] = useState(false);
@@ -79,7 +78,6 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
       const result = await generateContactBriefing({
         messages: nextMessages,
         interest: formData.interest,
-        consent_ai: aiConsent,
       });
       setConversation([
         ...nextMessages,
@@ -149,7 +147,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
         {/* ===== COLUNA ESQUERDA: TEXTO DE CHAMADA / CTA ===== */}
         <div className="lg:col-span-5 space-y-6">
           <div className="inline-flex items-center gap-2 text-xs font-['Sora'] font-bold text-[#CAF000] tracking-widest uppercase">
-            <span>VAMOS CONVERSAR</span>
+            <span>TRAGA SEU PROJETO PARA NÓS</span>
           </div>
 
           {/* EDITAR AQUI: Título do formulário */}
@@ -260,23 +258,11 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
                 )}
 
                 <form onSubmit={handleBriefingSubmit} className="space-y-3">
-                  <div className="flex items-start gap-3 rounded-[12px] border border-[rgba(247,247,247,0.08)] bg-[#0F0F0F] p-4">
-                    <input
-                      id="consent_ai"
-                      name="consent_ai"
-                      type="checkbox"
-                      required
-                      checked={aiConsent}
-                      onChange={(e) => setAiConsent(e.target.checked)}
-                      className="mt-1 h-4 w-4 shrink-0 accent-[#CAF000] focus:ring-[#CAF000]"
-                    />
-                    <label htmlFor="consent_ai" className="text-xs text-[#D9D9D9]/75 font-['Inter'] leading-relaxed">
-                      Autorizo o envio das mensagens deste briefing ao OpenRouter para processamento por IA.
-                      Não incluirei dados pessoais ou informações sigilosas. Consulte a{' '}
-                      <a href="/privacidade" className="text-[#CAF000] underline hover:text-[#CAF000]/80">
-                        Política de Privacidade
-                      </a>.
-                    </label>
+                  <div className="rounded-[12px] border border-[rgba(247,247,247,0.08)] bg-[#0F0F0F] p-4 text-xs text-[#D9D9D9]/75 font-['Inter'] leading-relaxed">
+                    O briefing é processado por IA via OpenRouter. Não inclua dados pessoais ou informações sigilosas. Consulte a{' '}
+                    <a href="/privacidade" className="text-[#CAF000] underline hover:text-[#CAF000]/80">
+                      Política de Privacidade
+                    </a>.
                   </div>
                   <Textarea
                     label="Sua resposta"
@@ -287,7 +273,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
                     placeholder="Descreva com suas palavras..."
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
-                    disabled={briefingLoading || briefingComplete || !aiConsent}
+                    disabled={briefingLoading || briefingComplete}
                   />
                   {!briefingComplete && (
                     <Button
@@ -295,7 +281,7 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
                       variant="primary"
                       size="md"
                       fullWidth
-                      disabled={briefingLoading || !aiConsent || !chatInput.trim()}
+                      disabled={briefingLoading || !chatInput.trim()}
                       iconRight={<Send className="w-4 h-4" />}
                     >
                       {briefingLoading ? 'Analisando...' : 'Enviar resposta'}

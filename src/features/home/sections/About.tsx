@@ -8,6 +8,7 @@ import React from 'react';
 import { FOUNDERS } from '../../../content/team';
 import { Card } from '../../../components/ui/Card';
 import { BrolabsFlaskIcon } from '../../../components/brand/Logo';
+import { ArrowUpRight } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
@@ -46,7 +47,7 @@ export const About: React.FC = () => {
             variant="surface-1"
             rounded="xl"
             hoverEffect
-            className="p-6 sm:p-8 flex flex-col justify-between"
+            className="group p-6 sm:p-8 flex flex-col justify-between"
           >
             {/* Foto dos fundadores (com tratamento de estúdio e gradiente inferior) */}
             <div className="relative w-full h-72 sm:h-84 rounded-[20px] overflow-hidden bg-[#161616] mb-6">
@@ -63,9 +64,17 @@ export const About: React.FC = () => {
               />
               {/* Gradiente inferior e vinheta sutil */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/30 to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 z-10">
-
-              </div>
+              {founder.socialLink && (
+                <a
+                  href={founder.socialLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`LinkedIn de ${founder.name} (abre em nova aba)`}
+                  className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#D9D9D9] group-hover:bg-[#CAF000] group-hover:border-[#CAF000] group-hover:text-[#080808] transition-all duration-200"
+                >
+                  <ArrowUpRight className="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:rotate-45" />
+                </a>
+              )}
             </div>
 
             {/* Informações dos fundadores */}

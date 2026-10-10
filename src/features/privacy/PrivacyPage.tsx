@@ -76,7 +76,7 @@ export const PrivacyPage: React.FC = () => {
             3. Base Legal para o Tratamento
           </h2>
           <p>
-            O envio das mensagens do briefing ao provedor de IA depende de consentimento específico, solicitado antes do início da conversa. O envio dos dados de contato e da mensagem à BROLABS TECH depende do consentimento LGPD no formulário final. Também tratamos informações para <strong className="text-[#F7F7F7]">procedimentos preliminares relacionados a contrato (Art. 7º, V)</strong> a seu pedido.
+            As mensagens enviadas no briefing são processadas por IA via OpenRouter para organizar as informações do projeto. O envio dos dados de contato e da mensagem à BROLABS TECH depende do consentimento LGPD no formulário final. Também tratamos informações para <strong className="text-[#F7F7F7]">procedimentos preliminares relacionados a contrato (Art. 7º, V)</strong> a seu pedido.
           </p>
         </section>
 

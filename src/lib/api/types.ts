@@ -56,7 +56,6 @@ export interface ContactBriefingMessage {
 export interface ContactBriefingPayload {
   messages: ContactBriefingMessage[];
   interest?: string;
-  consent_ai: boolean;
 }
 
 export interface ContactBriefingResult {

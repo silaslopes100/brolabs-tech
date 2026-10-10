@@ -7,7 +7,7 @@ Como editar: mantenha limites de conteúdo para controlar o tamanho dos prompts 
 
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 
 class BriefingMessage(BaseModel):
@@ -18,7 +18,6 @@ class BriefingMessage(BaseModel):
 class BriefingRequest(BaseModel):
     messages: list[BriefingMessage] = Field(..., min_length=1, max_length=24)
     interest: Optional[str] = Field(None, max_length=80)
-    consent_ai: bool = Field(..., description="Consentimento para processar o briefing com IA")
 
     @model_validator(mode="after")
     def validate_total_content(self):
@@ -27,13 +26,6 @@ class BriefingRequest(BaseModel):
         if self.messages[-1].role != "user":
             raise ValueError("A última mensagem do briefing deve ser do usuário.")
         return self
-
-    @field_validator("consent_ai")
-    @classmethod
-    def validate_ai_consent(cls, value: bool) -> bool:
-        if not value:
-            raise ValueError("O consentimento para o processamento com IA é obrigatório.")
-        return value
 
 
 class BriefingResponse(BaseModel):

@@ -17,18 +17,31 @@ import {
   ContactBriefingResult,
 } from './types';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const browserHost = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+const browserProtocol = typeof window !== 'undefined' ? window.location.protocol : 'http:';
+const defaultApiBase = import.meta.env.DEV
+  ? `${browserProtocol}//${browserHost}:8000/api`
+  : '/api';
+const API_BASE = import.meta.env.VITE_API_URL || defaultApiBase;
 
 async function fetchJson<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
-  const response = await fetch(url, {
-    ...options,
-    credentials: 'include', // Envia e recebe cookies httpOnly
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
-  });
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      ...options,
+      credentials: 'include', // Envia e recebe cookies httpOnly
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+    });
+  } catch (error: unknown) {
+    if (error instanceof TypeError) {
+      throw new Error('Não foi possível conectar à API. Verifique se o backend está ativo e acessível pela rede.');
+    }
+    throw error;
+  }
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
