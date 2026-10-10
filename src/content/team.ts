@@ -27,6 +27,6 @@ export const FOUNDERS: TeamMember[] = [
     role: "Engenheiro de Software, Especialista em TI e Desenvolvimento",
     bio: "Cientista da Computação com especialização em arquitetura de sistemas COBOL, Mainframe e Python. Experiência em infraestrutura distribuída com Scrum, plataformas SaaS e automações inteligentes. Apaixonado por tecnologia, desenvolvimento de sistemas e resoluções problemas.",
     image: "/images/team/marcos.png",
-    socialLink: "https://www.linkedin.com/in/marcos-sena",
+    socialLink: "https://www.linkedin.com/in/marcos-sena-8967b268/",
   },
 ];
