@@ -268,12 +268,6 @@ export const Contact: React.FC<ContactProps> = ({ initialService = '' }) => {
                 )}
 
                 <form onSubmit={handleBriefingSubmit} className="space-y-3">
-                  <div className="rounded-[12px] border border-[rgba(247,247,247,0.08)] bg-[#0F0F0F] p-4 text-xs text-[#D9D9D9]/75 font-['Inter'] leading-relaxed">
-                    O briefing é processado por IA via OpenRouter. Não inclua dados pessoais ou informações sigilosas. Consulte a{' '}
-                    <a href="/privacidade" className="text-[#CAF000] underline hover:text-[#CAF000]/80">
-                      Política de Privacidade
-                    </a>.
-                  </div>
                   <Textarea
                     label="Sua resposta"
                     name="briefing-answer"
