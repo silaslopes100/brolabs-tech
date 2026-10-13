@@ -72,7 +72,47 @@ VITE_API_URL="http://localhost:8000/api"
 
 ---
 
-## 3. Testes Automatizados (Backend)
+## 3. Implantação na Vercel
+
+O projeto usa `vercel.json` para gerar o frontend Vite e encaminhar as rotas
+React para o `index.html`. A API FastAPI é publicada como função Python em
+`api/[...path].py`. O arquivo `requirements.txt` da raiz inclui as dependências
+do backend.
+
+1. Crie um PostgreSQL e um Vercel Blob público, importe o repositório na Vercel
+   e conecte o Blob Store ao projeto. Configure as variáveis de ambiente de
+   produção:
+
+   | Variável | Valor |
+   | --- | --- |
+   | `ENV` | `production` |
+   | `DEBUG` | `false` |
+   | `DATABASE_URL` | URL do PostgreSQL com o driver `postgresql+psycopg://` |
+   | `SECRET_KEY` | Segredo aleatório forte e exclusivo |
+   | `ALLOWED_ORIGINS` | Origem pública do site, por exemplo `https://seu-projeto.vercel.app` |
+   | `STORAGE_BACKEND` | `vercel_blob` |
+   | `BLOB_READ_WRITE_TOKEN` | Token do Blob; opcional ao conectar o Blob Store com OIDC |
+   | `BLOB_STORE_ID` | ID do Blob Store ao usar OIDC |
+   | `ADMIN_EMAIL` | E-mail do administrador inicial |
+   | `ADMIN_PASSWORD` | Senha forte do administrador inicial |
+   | `VITE_USE_MOCK` | `false` |
+
+   Ao conectar o Blob Store ao projeto, a Vercel pode fornecer
+   `VERCEL_OIDC_TOKEN` e `BLOB_STORE_ID` automaticamente; nesse caso, não é
+   necessário criar um token de longa duração.
+2. Antes de receber tráfego, aplique as migrações ao banco de produção com
+   `cd backend && alembic upgrade head`, usando o `DATABASE_URL` de produção.
+3. Crie o usuário administrador uma única vez com
+   `cd backend && python -m app.seed`, usando as mesmas variáveis de ambiente.
+4. Publique o projeto depois de configurar o ambiente, as migrações e o admin.
+
+Não use SQLite nem uploads em disco local na Vercel: o filesystem das funções
+não é persistente. As credenciais devem ser configuradas como variáveis de
+ambiente da Vercel, nunca commitadas no repositório.
+
+---
+
+## 4. Testes Automatizados (Backend)
 
 O backend possui uma suíte de testes em `backend/tests/` cobrindo a regra de exibição da Home, filtros por categoria, unicidade de slugs, proteção de rotas administrativas e formulário de contato:
 
@@ -83,7 +123,7 @@ pytest -v
 
 ---
 
-## 4. Estrutura de Rotas
+## 5. Estrutura de Rotas
 
 | Rota | Descrição | Layout |
 | :--- | :--- | :--- |
@@ -98,7 +138,7 @@ pytest -v
 
 ---
 
-## 5. Checklist de Critérios de Aceite
+## 6. Checklist de Critérios de Aceite
 
 - [x] **Critério 1:** Com `VITE_USE_MOCK=true`, o site e o painel `/admin` funcionam com autonomia total sem depender do backend.
 - [x] **Critério 2:** Com o backend ativo (ou mock store), marcar *"Mostrar na Home"* reflete instantaneamente o card na Home pública e desmarcar o retira.

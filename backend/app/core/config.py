@@ -5,7 +5,7 @@ Dados: .env
 Como editar: configure variáveis adicionais em Settings com valores padrão seguros.
 """
 
-from typing import List
+from typing import List, Literal
 from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -26,6 +26,11 @@ class Settings(BaseSettings):
 
     # Banco de dados (SQLite local padrão)
     DATABASE_URL: str = "sqlite:///./brolabs.db"
+
+    # Armazenamento (local em desenvolvimento, Blob na Vercel)
+    STORAGE_BACKEND: Literal["local", "vercel_blob"] = "local"
+    BLOB_READ_WRITE_TOKEN: str = ""
+    BLOB_STORE_ID: str = ""
 
     # Segurança e autenticação
     SECRET_KEY: str = "dev_secret_key_brolabs_tech_2026_super_secure_key"

@@ -18,12 +18,27 @@ from app.api.routes import auth, health, projects, admin_projects, uploads, cont
 # ===== [SEÇÃO: CICLO DE VIDA E INICIALIZAÇÃO] =====
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Garante criação de tabelas em SQLite / desenvolvimento
-    Base.metadata.create_all(bind=engine)
+    if not settings.is_production:
+        Base.metadata.create_all(bind=engine)
 
-    # Garante diretório de uploads
-    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    if settings.STORAGE_BACKEND == "local":
+        os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
     yield
+
+
+if settings.is_production:
+    if settings.DATABASE_URL.startswith("sqlite"):
+        raise RuntimeError("Configure um banco PostgreSQL persistente em DATABASE_URL.")
+    if settings.STORAGE_BACKEND != "vercel_blob":
+        raise RuntimeError("Configure STORAGE_BACKEND=vercel_blob em produção.")
+    if not (
+        settings.BLOB_READ_WRITE_TOKEN
+        or (settings.BLOB_STORE_ID and os.getenv("VERCEL_OIDC_TOKEN"))
+    ):
+        raise RuntimeError(
+            "Configure as credenciais Vercel Blob por BLOB_READ_WRITE_TOKEN "
+            "ou conecte o Blob Store para usar OIDC."
+        )
 
 
 app = FastAPI(
@@ -59,9 +74,9 @@ app.include_router(admin_projects.router, prefix="/api")
 app.include_router(uploads.router, prefix="/api")
 app.include_router(contact.router, prefix="/api")
 
-# Pasta para servir imagens carregadas localmente
-os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
-app.mount("/media", StaticFiles(directory=settings.UPLOAD_DIR), name="media")
+if settings.STORAGE_BACKEND == "local":
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    app.mount("/media", StaticFiles(directory=settings.UPLOAD_DIR), name="media")
 
 
 @app.get("/")
