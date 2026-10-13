@@ -77,12 +77,3 @@ app.include_router(contact.router, prefix="/api")
 if settings.STORAGE_BACKEND == "local":
     os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
     app.mount("/media", StaticFiles(directory=settings.UPLOAD_DIR), name="media")
-
-
-@app.get("/")
-def root():
-    return {
-        "message": "BROLABS TECH API operacional.",
-        "status": "online",
-        "docs": "/docs"
-    }

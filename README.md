@@ -74,10 +74,11 @@ VITE_API_URL="http://localhost:8000/api"
 
 ## 3. Implantação na Vercel
 
-O projeto usa `vercel.json` para gerar o frontend Vite e encaminhar as rotas
-React para o `index.html`. A API FastAPI é publicada como função Python em
-`api/[...path].py`. O arquivo `requirements.txt` da raiz inclui as dependências
-do backend.
+O projeto usa `vercel.json` para gerar o frontend Vite e publicar a aplicação
+FastAPI como função Python em `api/[...path].py`. As requisições `/api/*` são
+encaminhadas diretamente para essa função; as demais rotas do frontend usam
+`index.html` como fallback da SPA. As dependências Python são declaradas no
+`requirements.txt` da raiz.
 
 1. Crie um PostgreSQL e um Vercel Blob público, importe o repositório na Vercel
    e conecte o Blob Store ao projeto. Configure as variáveis de ambiente de
