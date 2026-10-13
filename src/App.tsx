@@ -3,18 +3,19 @@
  * Responsabilidade: roteador principal dividindo as rotas públicas (dentro do Frame 3D, Navbar e Footer) e o painel administrativo (layout denso e direto sem moldura 3D).
  */
 
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Frame } from './components/layout/Frame';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { HomePage } from './features/home/HomePage';
-import { ProjectsPage } from './features/projects/ProjectsPage';
-import { ProjectDetail } from './features/projects/ProjectDetail';
-import { PrivacyPage } from './features/privacy/PrivacyPage';
-import { LoginPage } from './features/admin/LoginPage';
-import { ProjectsTable } from './features/admin/ProjectsTable';
-import { ProjectForm } from './features/admin/ProjectForm';
+
+const HomePage = lazy(() => import('./features/home/HomePage').then(({ HomePage }) => ({ default: HomePage })));
+const ProjectsPage = lazy(() => import('./features/projects/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
+const ProjectDetail = lazy(() => import('./features/projects/ProjectDetail').then(({ ProjectDetail }) => ({ default: ProjectDetail })));
+const PrivacyPage = lazy(() => import('./features/privacy/PrivacyPage').then(({ PrivacyPage }) => ({ default: PrivacyPage })));
+const LoginPage = lazy(() => import('./features/admin/LoginPage').then(({ LoginPage }) => ({ default: LoginPage })));
+const ProjectsTable = lazy(() => import('./features/admin/ProjectsTable').then(({ ProjectsTable }) => ({ default: ProjectsTable })));
+const ProjectForm = lazy(() => import('./features/admin/ProjectForm').then(({ ProjectForm }) => ({ default: ProjectForm })));
 
 // Restaura o scroll no topo ao transitar entre rotas
 function ScrollToTop() {
@@ -40,57 +41,68 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
-        {/* ===== ROTAS PÚBLICAS (COM MOLDURA 3D E NAVEGAÇÃO) ===== */}
-        <Route
-          path="/"
-          element={
-            <PublicLayout>
-              <HomePage />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/projetos"
-          element={
-            <PublicLayout>
-              <ProjectsPage />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/projetos/:slug"
-          element={
-            <PublicLayout>
-              <ProjectDetail />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/privacidade"
-          element={
-            <PublicLayout>
-              <PrivacyPage />
-            </PublicLayout>
-          }
-        />
+      <Suspense
+        fallback={
+          <div
+            className="flex min-h-screen items-center justify-center bg-[var(--color-bg)] text-[var(--color-gray)]"
+            role="status"
+          >
+            Carregando...
+          </div>
+        }
+      >
+        <Routes>
+          {/* ===== ROTAS PÚBLICAS (COM MOLDURA 3D E NAVEGAÇÃO) ===== */}
+          <Route
+            path="/"
+            element={
+              <PublicLayout>
+                <HomePage />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/projetos"
+            element={
+              <PublicLayout>
+                <ProjectsPage />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/projetos/:slug"
+            element={
+              <PublicLayout>
+                <ProjectDetail />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/privacidade"
+            element={
+              <PublicLayout>
+                <PrivacyPage />
+              </PublicLayout>
+            }
+          />
 
-        {/* ===== ROTAS ADMINISTRATIVAS (DENSO, SEM MOLDURA 3D) ===== */}
-        <Route path="/admin/login" element={<LoginPage />} />
-        <Route path="/admin" element={<ProjectsTable />} />
-        <Route path="/admin/projetos/novo" element={<ProjectForm />} />
-        <Route path="/admin/projetos/:id" element={<ProjectForm />} />
+          {/* ===== ROTAS ADMINISTRATIVAS (DENSO, SEM MOLDURA 3D) ===== */}
+          <Route path="/admin/login" element={<LoginPage />} />
+          <Route path="/admin" element={<ProjectsTable />} />
+          <Route path="/admin/projetos/novo" element={<ProjectForm />} />
+          <Route path="/admin/projetos/:id" element={<ProjectForm />} />
 
-        {/* Fallback */}
-        <Route
-          path="*"
-          element={
-            <PublicLayout>
-              <HomePage />
-            </PublicLayout>
-          }
-        />
-      </Routes>
+          {/* Fallback */}
+          <Route
+            path="*"
+            element={
+              <PublicLayout>
+                <HomePage />
+              </PublicLayout>
+            }
+          />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

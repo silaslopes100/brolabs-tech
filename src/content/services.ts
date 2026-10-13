@@ -6,6 +6,7 @@
 
 export interface ServiceItem {
   id: string;
+  number: string;
   title: string;
   description: string;
   image: string;
@@ -17,6 +18,7 @@ export interface ServiceItem {
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: "sistemas-saas",
+    number: "01",
     title: "Sistemas & SaaS",
     description:
       "Desenvolvimento de sistemas sob medida, plataformas SaaS escaláveis e produtos digitais com arquitetura robusta para crescer sem limites.",
@@ -27,6 +29,7 @@ export const SERVICES_DATA: ServiceItem[] = [
 
   {
     id: "automacao-ia",
+    number: "02",
     title: "Automação com IA",
     description:
       "Agentes inteligentes, automações de processos e integrações com LLMs que eliminam tarefas repetitivas e multiplicam a produtividade.",
@@ -36,6 +39,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "crm-gestao",
+    number: "03",
     title: "CRM & Gestão",
     description:
       "Implementação e customização de CRMs, fluxos de vendas, dashboards analíticos e ferramentas de gestão que transformam dados em decisões.",
@@ -45,6 +49,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "comunicacao-digital",
+    number: "04",
     title: "Comunicação Digital",
     description:
       "Estratégias de conteúdo, gestão de redes sociais, campanhas pagas e presença digital que geram autoridade e conexão real com o público.",
@@ -54,6 +59,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "estrategia-digital",
+    number: "05",
     title: "Estratégia Digital",
     description:
       "Planejamento estratégico, análise de mercado, posicionamento de marca e roadmap de transformação digital para empresas que querem liderar.",
@@ -63,6 +69,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "design-branding",
+    number: "06",
     title: "Design & Branding",
     description:
       "Identidade visual, UI/UX, design systems e experiências de marca memoráveis que diferenciam e criam valor tangível no mercado.",
