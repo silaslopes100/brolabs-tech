@@ -32,6 +32,19 @@ def test_category_filter(client, seed_projects):
     assert data[0]["category"] == "automacoes"
 
 
+def test_public_projects_accepts_limit_100(client, seed_projects):
+    """O catálogo pode solicitar até 100 projetos por página."""
+    response = client.get("/api/projects?page=1&limit=100")
+    assert response.status_code == 200
+    assert len(response.json()) == 3
+
+
+def test_public_projects_rejects_limit_above_100(client, seed_projects):
+    """Limites acima do máximo configurado continuam sendo rejeitados."""
+    response = client.get("/api/projects?page=1&limit=101")
+    assert response.status_code == 422
+
+
 def test_categories_endpoint(client, seed_projects):
     """Valida a contagem de projetos por categoria pública."""
     response = client.get("/api/categories")

@@ -21,7 +21,7 @@ def list_projects(
     home: bool = Query(False, description="Filtrar apenas projetos marcados para o grid da Home (máx 6)"),
     category: Optional[str] = Query(None, description="Filtrar por categoria: sistemas, automacoes, sites, design, diagramacao"),
     page: int = Query(1, ge=1, description="Número da página"),
-    limit: int = Query(20, ge=1, le=50, description="Itens por página"),
+    limit: int = Query(20, ge=1, le=100, description="Itens por página"),
     db: Session = Depends(get_db)
 ):
     """Lista projetos publicados com filtros opcionais de categoria ou exibição na Home."""
